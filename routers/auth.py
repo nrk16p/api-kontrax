@@ -42,5 +42,7 @@ def login(payload: schemas.UserLogin, db: Session = Depends(database.get_db)):
         "access_token": token,
         "token_type": "bearer",
         "user_id": user.user_id,
+        "firstname":  user.firstname,
+        "lastname": user.lastname,
         "role": user.role
     }

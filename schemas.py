@@ -27,6 +27,8 @@ class Token(BaseModel):
     token_type: str = "bearer"
     user_id: int
     role: str
+    firstname: str
+    lastname: str
 class AgreementBase(BaseModel):
     agreement_date: date
     landlord_id: int
