@@ -26,7 +26,21 @@ def register(payload: schemas.UserRegister, db: Session = Depends(database.get_d
 @router.post("/login", response_model=schemas.Token)
 def login(payload: schemas.UserLogin, db: Session = Depends(database.get_db)):
     user = db.query(models.User).filter(models.User.email == payload.email).first()
+
     if not user or not verify_password(payload.password, user.password_hash):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
-    token = create_access_token({"sub": str(user.user_id)})
-    return {"access_token": token, "token_type": "bearer"}
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid credentials"
+        )
+
+    # ✅ create token that contains user_id and role in payload
+    token_data = {"sub": str(user.user_id), "role": user.role}
+    token = create_access_token(token_data)
+
+    # ✅ return both token and user info
+    return {
+        "access_token": token,
+        "token_type": "bearer",
+        "user_id": user.user_id,
+        "role": user.role
+    }

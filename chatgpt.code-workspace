@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "../../chatgpt"
+		},
+		{
+			"path": "../../NPM"
+		},
+		{
+			"path": "../../narongkorn"
+		},
+		{
+			"path": "../../Documents"
+		},
+		{
+			"path": "../../kontrek"
+		},
+		{
+			"path": "../../business_intelligence_app"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../client-react-kontrax"
+		}
+	],
+	"settings": {}
+}
